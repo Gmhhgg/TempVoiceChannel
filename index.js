@@ -151,8 +151,10 @@ client["on"]("ready", function () {
   ["on"]("voiceStateUpdate", async function (oldState, newState) {
     let rooms = await db.get(`ROOMS_${newState["guild"]["id"]}`);
     if (rooms !== null) {
-      if (rooms.includes(oldState.channelId)) {
-        if (oldState.channel?.members.size == 0) oldState.channel.delete();
+      if (rooms) {
+         if (rooms?.includes(oldState.channelId)) {
+           if (oldState.channel?.members.size == 0) oldState.channel.delete();
+         }
       }
     }
 
